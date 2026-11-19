@@ -6,10 +6,16 @@ int main(void) {
                     // we will reuse this buffer
     FILE *file = fopen("/proc/cpuinfo", "r");
     while (fgets(buf, sizeof(buf), file) != NULL) {
-        printf("%s", buf);
+        if (strstr(buf, "MHz") != NULL || strncmp(buf, "model", 5) == 0 ) {
+        strtok(buf, ":");
+        char *strip = strtok(NULL, "\n");
+        printf("%s\n", strip);
+        }
     }
+    char *line = strtok(buf, "\n");
 
-    printf("\n\n\n\n%s\n", buf);
+
+    fclose(file);
     return 0;
 
 }
