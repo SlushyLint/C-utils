@@ -24,7 +24,19 @@ int main(int argc, char *argv[]) {
 //            printf("%s", buf);
 //        }
     }
+
     char cmd[1024];
+    if (strcmp(argv[1], ".")!=0){
+        FILE *src = fopen(argv[1], "r");
+        if (src == NULL) {
+            printf("File %s doesnt exist you absolute waste of sperm\n", argv[1]);
+            // just a lil bit of hostility to spice up your life <3
+            // ...
+            
+            return ret;
+        }
+        fclose(src);
+    }
     if (strcmp(argv[1], ".") == 0) {
         snprintf(cmd, sizeof(cmd), "gcc -Wall -Wextra *.c -o /tmp/cunt");
     } else {
@@ -59,7 +71,7 @@ int main(int argc, char *argv[]) {
             };
             execvp("gcc", cuntargs);
             printf("Go fuck yourself\n");
-            return ret;
+            _exit(127);
             
         };;;;;;;;;;;;;;;;;;;;;
         int status;
@@ -67,8 +79,17 @@ int main(int argc, char *argv[]) {
             printf("I hope you get doxxed :)\n");
                 return ret;
         }
-        if (!WIFEXITED(status)||WEXITSTATUS(status)!=0){
-            printf("GCC borked while doing something\n");
+        if (!WIFEXITED(status)) {
+            printf("There was a fucking error\nRun with '-Debug' flag for error handling\n")
+                ;
+            return ret;
+        }
+        if (WEXITSTATUS(status)==127) {
+            printf("go fuck yourself\n");
+            return ret;
+        }
+        if (WEXITSTATUS(status)!=0){
+            printf("You're shit at coding\n");
             return ret;
             
             

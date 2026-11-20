@@ -6,6 +6,6 @@ int main(void){
     int cmp = (rand() %10) + 1;
     printf("R/P/C: ");
     char in[5];
-    ( scanf("%4s", in));
+    ( scanf("%4s", in))
 
 }
